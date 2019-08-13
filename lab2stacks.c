@@ -1,8 +1,9 @@
 #include <stdio.h>
-int arr[100];
+int arr[50];
+int maxSize=30; 
 int i=-1;
 void push(int x){
-	if(i<100){
+	if(i<maxSize){
 		i++;
 		arr[i]=x;
 	}
@@ -27,9 +28,9 @@ void display(){
 	}
 }
 void main(){
-	printf("input 1 to push 2 to pop 3 to exit and display the stack");
+	
 	int a,b;
-	while(true){
+	while(true){printf("\ninput 1 to push 2 to pop 3 to exit and display the stack");
 		scanf("%d",&a);
 		if(a==3){
 			display();
