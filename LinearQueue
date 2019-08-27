@@ -1,0 +1,78 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void enqueue(int ele,int *rear,int queue[])
+{
+    if(*rear!=99)
+    {
+        queue[*rear]=ele;
+        *rear+=1;
+        //printf("%d\n",*rear);
+    }
+    else
+        printf("queue is full\n");
+    
+}
+
+void dequeue(int *front,int *rear,int ele)
+{
+    if(*front<=*rear)
+    {
+        printf("the removed element is %d\n",ele);
+        *front+=1;
+    }
+    else
+    {
+        printf("queue is empty\n");
+    }
+}
+
+void display(int *front,int *rear,int queue[])
+{
+    int i;
+    printf("the elements of the queue are\n");
+    for(i=*front;i<*rear;i++)
+    {
+        printf("%d ",queue[i]);
+    }
+}
+
+int main()
+{
+    int front=0,rear=0,queue[100];
+    int option,ele;
+    
+    while(1)
+    {
+        printf("\n1:enqueue\n2:dequeue\n3:display\n4:exit\n");
+        scanf("%d",&option);
+        
+        if(option==1)
+        {
+            printf("enter the element to be added\n");
+            scanf("%d",&ele);
+            enqueue(ele,&rear,queue);
+            //printf("%d,%d",front,rear);
+        }
+        else if(option==2)
+        {
+            dequeue(&front,&rear,queue[front]);
+                        //printf("%d,%d",front,rear);
+
+        }
+        else if(option==3)
+        {
+            display(&front,&rear,queue);
+                       // printf("%d,%d",front,rear);
+
+        }
+        else
+        {
+            printf("bye bye");
+            exit(0);
+        }
+    }
+    
+    return 0;
+}
