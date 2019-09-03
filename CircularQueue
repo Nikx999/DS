@@ -1,0 +1,99 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+#define size 5
+struct Q
+{
+    int front,rear;
+    int queue[size];
+
+}s;
+
+void enqueue(int ele,struct Q *s)
+{
+    if(s->front==(s->rear+1)%size)
+    {
+        printf("Queue FUll")  ;
+
+    }
+    else if(s->front==-1)
+        {
+
+            s->front=s->rear=0;
+            s->queue[s->rear]=ele;
+        }
+    else{
+        s->rear=(s->rear+1)%(size);
+        s->queue[s->rear]=ele;
+
+    }
+
+}
+
+void dequeue(struct Q *s)
+{
+    if(s->front==-1||s->front==s->rear)
+    {
+        printf("Queue Empty");
+    }
+    else
+    {
+        s->front=((s->front)+1)%size;
+
+    }
+
+}
+
+void display(struct Q *s)
+{
+    int i;
+    printf("the elements of the queue are\n");
+    if(s->rear<s->front)
+       s->rear=s->rear+size;
+    for(i=s->front;i<=s->rear;i++)
+    {
+        printf("%d ",s->queue[i%size]);
+    }
+}
+
+int main()
+{
+
+    int option,ele;
+    s.front=-1;
+    s.rear=-1;
+
+
+    while(1)
+    {
+        printf("\n1:enqueue\n2:dequeue\n3:display\n4:exit\n");
+        scanf("%d",&option);
+
+        if(option==1)
+        {
+            printf("enter the element to be added\n");
+            scanf("%d",&ele);
+            enqueue(ele,&s);
+            //printf("%d,%d",front,rear);
+        }
+        else if(option==2)
+        {
+            dequeue(&s);
+                        //printf("%d,%d",front,rear);
+
+        }
+        else if(option==3)
+        {
+            display(&s);
+                       // printf("%d,%d",front,rear);
+
+        }
+        else
+        {
+            printf("bye bye");
+            exit(0);
+        }
+    }
+
+    return 0;
+}
