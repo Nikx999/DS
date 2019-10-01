@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{
+    int data;
+    struct Node *next;
+};struct Node *head;
+int get_pos(int numb){
+    int nu=0;
+    struct Node *temp=head;
+    while(temp!=NULL){
+        if(temp->data>numb){
+            break;
+        }
+        temp=temp->next;
+        nu++;
+    }
+    return nu;
+   
+}
+
+int insert_pos(int num,int pos){
+    struct Node *temp = (struct Node*)malloc(sizeof(struct Node));
+    struct Node *temp1 = (struct Node*)malloc(sizeof(struct Node));
+    struct Node *pre = (struct Node *)malloc(sizeof(struct Node));
+    pre=head;
+    temp1->data=num;
+    temp = head;
+    int i=0;
+    if(head==NULL){
+        temp1->next=head;
+        head=temp1;
+    }
+    else{
+    while(temp != NULL&&i<pos){
+        pre=temp;
+        temp = temp->next;
+        i++;
+    }
+    temp1->next=temp;
+    pre->next=temp1;
+    }
+   
+}
+void display(){
+    struct Node *temp = (struct Node*)malloc(sizeof(struct Node));
+    temp = head;
+    while(temp != NULL){
+        printf("%d\n", temp->data);
+        temp = temp->next;
+    }
+}
+int main()
+{
+   
+    int n, dataa,po;
+    head = NULL;
+    printf("1 to insert 2 to display\n");
+    while(1){
+        scanf("%d", &n);
+        scanf("%d", &dataa);
+        if(n == 1){
+            po=get_pos(dataa);
+            insert_pos(dataa,po);
+        }
+       
+        else{
+            display();
+            break;
+        }
+    }
+    return 0;
+}
