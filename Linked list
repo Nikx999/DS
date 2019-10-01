@@ -1,0 +1,52 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{
+int data;
+struct Node *next;
+};struct Node *head;
+void insert_front(int num){
+struct Node *temp = (struct Node*)malloc(sizeof(struct Node));
+temp->data = num;
+temp->next = head;
+head = temp;
+}
+void insert_end(int num){
+struct Node *temp = (struct Node*)malloc(sizeof(struct Node));
+struct Node *temp1 = (struct Node*)malloc(sizeof(struct Node));
+temp = head;
+while(temp != NULL){
+temp = temp->next;
+}
+temp->next = temp1;
+temp1->data = num;
+temp1->next = NULL;
+}
+void display(){
+struct Node *temp = (struct Node*)malloc(sizeof(struct Node));
+temp = head;
+while(temp != NULL){
+printf("%d\n", temp->data);
+temp = temp->next;
+}
+}
+int main()
+{
+int n, data;
+printf("enter 1 to insert at front and 2 to insert at back and 3 to display\n");
+while(1){
+scanf("%d", &n);
+scanf("%d", &data);
+if(n == 1){
+insert_front(data);
+}
+else if(n == 2){
+insert_end(data);
+}
+else{
+display();
+break;
+}
+}
+return 0;
+}
