@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{
+int data;
+struct Node *next;
+};struct Node *head;
+void insert_front(int num){
+struct Node *temp = (struct Node*)malloc(sizeof(struct Node));
+temp->data = num;
+temp->next = head;
+head = temp;
+}
+void delete_front(){
+struct Node *temp = head;
+if(head==NULL){
+    printf("NO items to delete");
+    return;
+}
+else{
+    head=head->next;
+    free(temp);
+}
+}
+
+void insert_end(int num){
+struct Node *temp;
+struct Node *temp1 = (struct Node*)malloc(sizeof(struct Node));
+temp = head;
+while(temp->next != NULL){
+temp = temp->next;
+}
+temp->next = temp1;
+temp1->data = num;
+temp1->next = NULL;
+}
+void delete_end(){
+    struct Node *temp=head;
+    struct Node *pre=head;
+    while(temp->next!=NULL){
+        pre=temp;
+        temp=temp->next;
+    }
+    pre->next=NULL;
+    free(temp);
+}
+void del_pos(int n){
+    struct Node *pre=head;
+    struct Node *temp=head;
+    int i=0;
+    while(i<n){
+        if(temp!=NULL){
+       
+           pre=temp;
+            temp=temp->next;
+            i++;
+        }
+        else{
+            printf("Out of Index");
+            return;
+        }
+    }
+    pre->next=temp->next;
+    free(temp);
+}
+void display(){
+struct Node *temp = (struct Node*)malloc(sizeof(struct Node));
+temp = head;
+while(temp != NULL){
+printf("%d\n", temp->data);
+temp = temp->next;
+}
+}
+int main()
+{
+int n, data;
+printf("enter 1 to insert at front and 2 to insert at back and 3 to display 4 to delete at front 5 to delete at end 6 to delete at postion\n");
+while(1){
+scanf("%d", &n);
+
+if(n == 1){
+    scanf("%d", &data);
+insert_front(data);
+}
+else if(n == 2){
+    scanf("%d", &data);
+insert_end(data);
+}
+else if(n==3){
+display();
+}
+else if(n==4){
+    delete_front();
+    }
+else if(n==5){
+    delete_end();
+}
+else if(n==6){
+    printf("enter position to delete");
+    scanf("%d", &data);
+    del_pos(data);
+}
+}
+return 0;
+}
